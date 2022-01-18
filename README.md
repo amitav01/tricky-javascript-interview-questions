@@ -106,6 +106,12 @@ for (var i = 0; i < 5; i++) {
     }
     fn(i);
 }
+
+// alternative using IIFE
+for (var i = 0; i < 5; i++) {
+   setTimeout(((val) => { console.log(val); })(i), 100);
+}
+
 ```
 **Answer**
 ```
