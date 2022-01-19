@@ -231,4 +231,48 @@ undefined
 Here `let a = b = 0` is same as `b = 0; let a = b;`. So, here `a` is a local variable but `b` is created in global scope, thus we can access it outside the function as well.
 
 
+5. Write code for debouncing.
+**Answer**
+```html
+<button onclick="debounceSearch(1)"> Search </button>
+```
+```javascript
+function search(x){
+	console.log('searching..', x)
+}
 
+function debounce(fn, delay) {
+	let timeout;
+	return function(...args) {
+  	clearTimeout(timeout);
+  	timeout = setTimeout(() => fn(...args), delay);
+  }
+}
+
+const debounceSearch = debounce(search, 500);
+```
+6. Write code for throttling.
+**Answer**
+```html
+<button onclick="throttleSearch()"> Search </button>
+```
+
+```javascript
+function search(x){
+	console.log('searching..', x)
+}
+
+function throttle(fn, delay) {
+	let flag = false;
+	return function(...args) {
+  	if (!flag) {
+    	fn(...args);
+    	flag = true;
+      setTimeout(() => { flag = false; }, delay);
+    }
+  	
+  }
+}
+
+const throttleSearch = throttle(search, 500);
+```
