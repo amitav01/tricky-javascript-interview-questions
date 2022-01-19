@@ -1,6 +1,6 @@
 # Tricky JavaScript interview questions
 
-## Hoisting
+## Hoisting and Scoping
 1. ### What will be the output here?
 
 ```javascript
@@ -63,9 +63,21 @@ undefined
 5
 ```
 
+6. ### What would be the output?
 
-
-
+```javascript
+var x = 20;
+if (true) {
+ var x = 10;
+ console.log(x);
+}
+console.log(x);
+```
+**Answer**
+```
+10
+10
+```
 
 
 
