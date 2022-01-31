@@ -114,14 +114,16 @@ for (let i = 0; i < 5; i++) {
 ```javascript
 for (var i = 0; i < 5; i++) {
     function fn(val) {
-        setTimeout(() => { console.log(val); }, 100);
+       setTimeout(() => { console.log(val); }, 100);
     }
     fn(i);
 }
 
 // alternative using IIFE
 for (var i = 0; i < 5; i++) {
-   setTimeout(((val) => { console.log(val); })(i), 100);
+  (function(val) { 
+     setTimeout(() => { console.log(val); }, 100);
+  })(i);
 }
 
 ```
@@ -238,14 +240,14 @@ Here `let a = b = 0` is same as `b = 0; let a = b;`. So, here `a` is a local var
 ```
 ```javascript
 function search(x){
-	console.log('searching..', x)
+   console.log('searching..', x)
 }
 
 function debounce(fn, delay) {
-	let timeout;
-	return function(...args) {
-  	clearTimeout(timeout);
-  	timeout = setTimeout(() => fn(...args), delay);
+   let timeout;
+   return function(...args) {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => fn(...args), delay);
   }
 }
 
@@ -259,19 +261,18 @@ const debounceSearch = debounce(search, 500);
 
 ```javascript
 function search(x){
-	console.log('searching..', x)
+   console.log('searching..', x)
 }
 
 function throttle(fn, delay) {
-	let flag = false;
-	return function(...args) {
-  	if (!flag) {
-    	fn(...args);
-    	flag = true;
-      setTimeout(() => { flag = false; }, delay);
-    }
-  	
-  }
+   let flag = false;
+   return function(...args) {
+      if (!flag) {
+        fn(...args);
+        flag = true;
+        setTimeout(() => { flag = false; }, delay);
+      }
+   }
 }
 
 const throttleSearch = throttle(search, 500);
